@@ -1798,7 +1798,17 @@ textarea.post-input { line-height: 1.2; resize: vertical; min-height: 6em; }
    thing that contains it, and on a media card the solid brand block fights the photograph
    directly above it. Outline leads, ghost follows, and `filled` stays reserved for
    page-level actions OUTSIDE cards, which is what keeps the Button hierarchy meaningful. */
-.post-card__actions { display: flex; align-items: center; gap: var(--space-s); }
+/* ACTIONS SIT FURTHER DOWN THAN THE REST OF THE STACK. The body gaps everything at
+   space/m, which is right between text and tags - they are both description of the same
+   thing. Actions are not description, they are the thing you DO, and at the same gap they
+   read as one more line of metadata. The extra space/s on top is what separates "what this
+   is" from "what you can do with it" without needing a rule or a heading to say so. */
+.post-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  margin-top: var(--space-s);
+}
 
 /* LEAVE GHOST'S NEGATIVE MARGIN ALONE in this row. It looks like it should be cancelled -
    a -space/s pull on the second button reads like it will eat the gap - and cancelling it is
@@ -1822,6 +1832,18 @@ textarea.post-input { line-height: 1.2; resize: vertical; min-height: 6em; }
   z-index: 1;
 }
 .post-card__actions { position: relative; z-index: 2; }
+
+/* ONE AFFORDANCE AT A TIME, the same rule Media Thumb states and this file only claimed to.
+   BOTH STAY LIT deliberately: hovering an action does not stop the card being hovered - the
+   pointer IS still over the card, and a card that goes flat the moment you reach for its
+   button reads as though you have left it.
+
+   What separates them is the SURFACE, not the presence of a state. A nested control takes
+   `hover-surface-nested` so it sits ON the card's hover instead of competing with it. Give
+   it the container's own `hover-surface` and the two paint the same colour, which is a
+   button that vanishes into the thing it sits on at the exact moment you reach for it. */
+.post-card__actions .post-btn:hover,
+.post-card__actions .post-btn.is-hover { background: var(--hover-surface-nested); }
 
 /* TYPE COMES FROM THE FIGMA TEXT STYLES, applied as the generated classes in the markup -
    `post-text-small` on the eyebrow and meta, `post-text-h4` on the title. Nothing here

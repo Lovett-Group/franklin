@@ -55,9 +55,26 @@ header.top{position:sticky;top:0;z-index:60;background:var(--paper);
 .shell{display:flex;align-items:flex-start}
 aside.rail{width:270px;flex:0 0 270px;border-right:1px solid var(--rule);background:var(--rail);
      position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto;padding:10px 0 40px}
-.navgroup{font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
-          color:var(--ink);margin:26px 0 6px;padding:0 26px}
-.navgroup:first-child{margin-top:18px}
+/* Collapsible groups. 30-odd links in one column is a scroll, not a menu; closing the
+   sections you are not in makes the rail navigable again. <details> gives the open/close
+   behaviour and the keyboard handling for nothing. */
+details.navgroup{border-bottom:1px solid var(--rule-2)}
+details.navgroup > summary{
+  list-style:none;cursor:pointer;user-select:none;
+  font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
+  color:var(--ink);padding:14px 26px;display:flex;align-items:center;gap:9px}
+details.navgroup > summary::-webkit-details-marker{display:none}
+/* Drawn chevron: neither shipped face carries one, so a text character here would be
+   whatever symbol font the reader's OS happens to supply. */
+details.navgroup > summary::before{
+  content:"";width:7px;height:7px;flex:none;border-right:1.5px solid var(--ink-3);
+  border-bottom:1.5px solid var(--ink-3);transform:rotate(-45deg);
+  transition:transform .14s ease}
+details.navgroup[open] > summary::before{transform:rotate(45deg)}
+details.navgroup > summary:hover{background:var(--rule-2)}
+details.navgroup > *:last-child{margin-bottom:12px}
+.navsub{font-weight:600;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+        color:var(--ink-3);padding:12px 26px 4px}
 a.navlink{display:block;font-size:15.5px;color:var(--ink-2);padding:7px 26px;text-decoration:none;
           border-left:2px solid transparent}
 a.navlink:hover{color:var(--ink);background:var(--rule-2)}
@@ -412,10 +429,13 @@ footer.foot b{color:var(--ink-2);font-weight:600}
   <a class="ghlink" href="resources.html">Using the system</a>
 </div></header>
 <div class="shell">
-  <aside class="rail"><div class="navgroup">Get started</div>
+  <aside class="rail"><details class="navgroup">
+<summary>Get started</summary>
 <a class="navlink" href="index.html">Overview</a>
 <a class="navlink" href="resources.html">Using the system</a>
-<div class="navgroup">Brand</div>
+</details>
+<details class="navgroup">
+<summary>Brand</summary>
 <a class="navlink" href="about.html">About POST</a>
 <a class="navlink" href="voice.html">Voice and tone</a>
 <a class="navlink" href="logotype.html">Logotype</a>
@@ -423,30 +443,40 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="shapes.html">Shape library</a>
 <a class="navlink" href="color.html">Colour</a>
 <a class="navlink" href="typography.html">Typography</a>
-<div class="navgroup">Digital</div>
+</details>
+<details class="navgroup">
+<summary>Digital</summary>
 <a class="navlink" href="ramps.html">Colour ramps</a>
 <a class="navlink" href="tokens.html">Design tokens</a>
 <a class="navlink" href="icons.html">Icons</a>
 <a class="navlink" href="components.html">Components</a>
-<div class="navgroup">Components</div>
+</details>
+<details class="navgroup" open>
+<summary>Components</summary>
+<div class="navsub">Actions</div>
 <a class="navlink" href="component-button.html">Button</a>
 <a class="navlink" href="component-icon-button.html">Icon Button</a>
 <a class="navlink" href="component-note-link.html">Note Link</a>
+<div class="navsub">Tags and filters</div>
 <a class="navlink" href="component-tag.html">Tag</a>
 <a class="navlink" href="component-chip.html">Chip</a>
+<div class="navsub">Form controls</div>
 <a class="navlink on" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
 <a class="navlink" href="component-checkbox.html">Checkbox</a>
 <a class="navlink" href="component-radio.html">Radio</a>
 <a class="navlink" href="component-search-bar.html">Search Bar</a>
+<div class="navsub">Disclosure and feedback</div>
 <a class="navlink" href="component-accordion.html">Accordion</a>
 <a class="navlink" href="component-alert.html">Alert</a>
 <a class="navlink" href="component-progress.html">Progress Bar</a>
 <a class="navlink" href="component-scroll-dots.html">Scroll Dots</a>
+<div class="navsub">Cards</div>
 <a class="navlink" href="component-stacked-card.html">Stacked Card</a>
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
-<a class="navlink" href="component-media-thumb.html">Media Thumb</a></aside>
+<a class="navlink" href="component-media-thumb.html">Media Thumb</a>
+</details></aside>
   <main><div class="crumb">Components</div><h1 class="page">Input</h1><p class="lede">A single line of text entry.</p><p class="body">Use it on its own only inside something that already labels it. Most of the time you want Field, which adds the label and the help text.</p><div class="panel"><b>Watch out.</b> Never ship an input with no label — a placeholder is not a label; it disappears as soon as someone types.</div><div class="switch"><span class="lbl">Sub-brand</span><div class="seg" data-axis="brand"><button class="on" data-v="post"><i style="background:#0016C1"></i>post</button><button class="" data-v="culture"><i style="background:#34885D"></i>culture</button><button class="" data-v="eat"><i style="background:#F54544"></i>eat</button><button class="" data-v="music"><i style="background:#676767"></i>music</button><button class="" data-v="shop"><i style="background:#EA3ADD"></i>shop</button><button class="" data-v="skylawn"><i style="background:#2DB2EB"></i>skylawn</button><button class="" data-v="work"><i style="background:#994B03"></i>work</button></div><span class="lbl">Theme</span><div class="seg" data-axis="theme"><button class="on" data-v="light">light</button><button class="" data-v="warm">warm</button><button class="" data-v="brand">brand</button><button class="" data-v="deep">deep</button></div></div><div class="stage" id="live-input">  <div class="sh"><span>Live</span><span>rendered from the shipped recipe</span></div>  <div class="axisctl" data-axisctl data-ctl-recipe="input" data-axes="{}" data-base="{&quot;State&quot;: &quot;default&quot;}" data-target="#live-input .stagebody"></div>  <div class="stagebody"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;default&quot;}"></div></div></div><h2 class="sec">States</h2><div class="matrix"><div class="mcell"><div class="st">default</div><div class="mb"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;default&quot;}"></div></div></div><div class="mcell"><div class="st">hover</div><div class="mb"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;hover&quot;}"></div></div></div><div class="mcell"><div class="st">focus</div><div class="mb"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;focus&quot;}"></div></div></div><div class="mcell"><div class="st">filled</div><div class="mb"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;filled&quot;}"></div></div></div><div class="mcell"><div class="st">error</div><div class="mb"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;error&quot;}"></div></div></div><div class="mcell"><div class="st">disabled</div><div class="mb"><div data-recipe="input" data-state="{&quot;State&quot;: &quot;disabled&quot;}"></div></div></div></div><h2 class="sec">Code</h2><p class="note">The HTML for the live example above is on the page - use your browser's inspector, or copy the CSS here and the markup from the preview. Load <code>post-ui.css</code> once per site and this component works anywhere.</p><div class="code" data-code="code-input"><div class="bar"><button class="on" data-t="code-input-0">CSS</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="code-input-0">/* ============================================================================
    POST UI System — components
    HAND-WRITTEN. Not generated: this file encodes the RULES the components follow,
@@ -529,6 +559,21 @@ textarea.post-input { line-height: 1.2; resize: vertical; min-height: 6em; }
 </div>
 <!-- Component behaviour. Delegated from the document, so it also drives the
      previews this page renders after load. Same file the site tells you to use. -->
+<script>
+/* Put the CURRENT page in view inside the rail. The open group is chosen on the server,
+   but a component 25 links down still lands off-screen, so the rail would open scrolled
+   to the top with no sign of where you are. Scrolls the RAIL only: scrollIntoView would
+   move the document too and drop you past the heading you just navigated to. */
+(function(){
+  var rail = document.querySelector('aside.rail');
+  var on = rail && rail.querySelector('.navlink.on');
+  if(!rail || !on) return;
+  var r = on.getBoundingClientRect(), rr = rail.getBoundingClientRect();
+  if(r.top < rr.top || r.bottom > rr.bottom){
+    rail.scrollTop += (r.top - rr.top) - (rail.clientHeight / 2 - r.height / 2);
+  }
+})();
+</script>
 <script src="assets/components.js"></script>
 
 <script>

@@ -55,9 +55,26 @@ header.top{position:sticky;top:0;z-index:60;background:var(--paper);
 .shell{display:flex;align-items:flex-start}
 aside.rail{width:270px;flex:0 0 270px;border-right:1px solid var(--rule);background:var(--rail);
      position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto;padding:10px 0 40px}
-.navgroup{font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
-          color:var(--ink);margin:26px 0 6px;padding:0 26px}
-.navgroup:first-child{margin-top:18px}
+/* Collapsible groups. 30-odd links in one column is a scroll, not a menu; closing the
+   sections you are not in makes the rail navigable again. <details> gives the open/close
+   behaviour and the keyboard handling for nothing. */
+details.navgroup{border-bottom:1px solid var(--rule-2)}
+details.navgroup > summary{
+  list-style:none;cursor:pointer;user-select:none;
+  font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
+  color:var(--ink);padding:14px 26px;display:flex;align-items:center;gap:9px}
+details.navgroup > summary::-webkit-details-marker{display:none}
+/* Drawn chevron: neither shipped face carries one, so a text character here would be
+   whatever symbol font the reader's OS happens to supply. */
+details.navgroup > summary::before{
+  content:"";width:7px;height:7px;flex:none;border-right:1.5px solid var(--ink-3);
+  border-bottom:1.5px solid var(--ink-3);transform:rotate(-45deg);
+  transition:transform .14s ease}
+details.navgroup[open] > summary::before{transform:rotate(45deg)}
+details.navgroup > summary:hover{background:var(--rule-2)}
+details.navgroup > *:last-child{margin-bottom:12px}
+.navsub{font-weight:600;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+        color:var(--ink-3);padding:12px 26px 4px}
 a.navlink{display:block;font-size:15.5px;color:var(--ink-2);padding:7px 26px;text-decoration:none;
           border-left:2px solid transparent}
 a.navlink:hover{color:var(--ink);background:var(--rule-2)}
@@ -358,10 +375,13 @@ footer.foot b{color:var(--ink-2);font-weight:600}
   <a class="ghlink" href="resources.html">Using the system</a>
 </div></header>
 <div class="shell">
-  <aside class="rail"><div class="navgroup">Get started</div>
+  <aside class="rail"><details class="navgroup">
+<summary>Get started</summary>
 <a class="navlink" href="index.html">Overview</a>
 <a class="navlink" href="resources.html">Using the system</a>
-<div class="navgroup">Brand</div>
+</details>
+<details class="navgroup" open>
+<summary>Brand</summary>
 <a class="navlink" href="about.html">About POST</a>
 <a class="navlink on" href="voice.html">Voice and tone</a>
 <a class="navlink" href="logotype.html">Logotype</a>
@@ -369,30 +389,40 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="shapes.html">Shape library</a>
 <a class="navlink" href="color.html">Colour</a>
 <a class="navlink" href="typography.html">Typography</a>
-<div class="navgroup">Digital</div>
+</details>
+<details class="navgroup">
+<summary>Digital</summary>
 <a class="navlink" href="ramps.html">Colour ramps</a>
 <a class="navlink" href="tokens.html">Design tokens</a>
 <a class="navlink" href="icons.html">Icons</a>
 <a class="navlink" href="components.html">Components</a>
-<div class="navgroup">Components</div>
+</details>
+<details class="navgroup">
+<summary>Components</summary>
+<div class="navsub">Actions</div>
 <a class="navlink" href="component-button.html">Button</a>
 <a class="navlink" href="component-icon-button.html">Icon Button</a>
 <a class="navlink" href="component-note-link.html">Note Link</a>
+<div class="navsub">Tags and filters</div>
 <a class="navlink" href="component-tag.html">Tag</a>
 <a class="navlink" href="component-chip.html">Chip</a>
+<div class="navsub">Form controls</div>
 <a class="navlink" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
 <a class="navlink" href="component-checkbox.html">Checkbox</a>
 <a class="navlink" href="component-radio.html">Radio</a>
 <a class="navlink" href="component-search-bar.html">Search Bar</a>
+<div class="navsub">Disclosure and feedback</div>
 <a class="navlink" href="component-accordion.html">Accordion</a>
 <a class="navlink" href="component-alert.html">Alert</a>
 <a class="navlink" href="component-progress.html">Progress Bar</a>
 <a class="navlink" href="component-scroll-dots.html">Scroll Dots</a>
+<div class="navsub">Cards</div>
 <a class="navlink" href="component-stacked-card.html">Stacked Card</a>
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
-<a class="navlink" href="component-media-thumb.html">Media Thumb</a></aside>
+<a class="navlink" href="component-media-thumb.html">Media Thumb</a>
+</details></aside>
   <main><div class="crumb">Brand</div><h1 class="page">Voice and tone</h1><p class="lede">POST&#x27;s voice tells stories in an authentic and direct tone — as if speaking to an old friend, at once erudite and accessible.</p><p class="body">While our messaging is bold and fearless, it should also strive to be empathetic and judicious. Our stories radiate warmth, charm and humility.</p><h2 class="sec">Writing for POST</h2><div class="dd"><section class="yes"><h4>Do</h4><ul><li>Be concise and honest</li><li>Use plain English</li><li>Ask a question</li><li>Engage your audience</li><li>Use action verbs</li><li>Use words from our lexicon</li></ul></section><section class="no"><h4>Don't</h4><ul><li>Use hyperbole or exaggerate</li><li>Use clichés or marketing jargon</li><li>Overuse exclamation points</li><li>Engage in highly sensitive or potentially offensive discourse</li><li>Use criticism</li></ul></section></div><h2 class="sec">Our lexicon</h2><p class="note">How do we want our guests to feel?</p><div class="cards" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px"><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Uninhibited</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Free</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Creative</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Odd</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Adventurous</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Traveled</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Story</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Wanderlust</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Cultured</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Elegant</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Challenged</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Enlightened</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Empowered</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Beautiful</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Welcomed</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Proud</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Reflective</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Peaceful</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Unique</h3></div><div class="card" style="padding:14px 16px"><h3 style="font-size:17px">Edgy</h3></div></div><h2 class="sec">Who is speaking</h2><p class="note">POST has three communication streams, and they are not the same voice.</p><div class="panel"><b>The key distinction.</b> We view ourselves as cheeky documentarians chronicling the activity at POST. A tenant&#x27;s voice is focused on active promotion of their concept and on driving visitation.</div><div class="rulebox"><b>POST speaking to guests</b><span>Our audience is the people who follow our social media, see our advertisements, view our website and visit our space. Campaigns should be authentic, engaging and reflective of that audience.</span></div><div class="rulebox"><b>POST speaking to tenants</b><span>POST is a resource that supports tenants with clear information about the project as well as guidelines for best media practice. Be informative, direct and to the point. Avoid marketing jargon and be transparent.</span></div><div class="rulebox"><b>Tenants speaking to guests</b><span>Tenants each have their own voice, and should leverage POST&#x27;s existing assets in order to maximise brand reach and content engagement.</span></div>
     <footer class="foot">
       <p><b>POST Houston</b> is a Lovett Commercial project. This site documents the POST
@@ -402,6 +432,21 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 </div>
 <!-- Component behaviour. Delegated from the document, so it also drives the
      previews this page renders after load. Same file the site tells you to use. -->
+<script>
+/* Put the CURRENT page in view inside the rail. The open group is chosen on the server,
+   but a component 25 links down still lands off-screen, so the rail would open scrolled
+   to the top with no sign of where you are. Scrolls the RAIL only: scrollIntoView would
+   move the document too and drop you past the heading you just navigated to. */
+(function(){
+  var rail = document.querySelector('aside.rail');
+  var on = rail && rail.querySelector('.navlink.on');
+  if(!rail || !on) return;
+  var r = on.getBoundingClientRect(), rr = rail.getBoundingClientRect();
+  if(r.top < rr.top || r.bottom > rr.bottom){
+    rail.scrollTop += (r.top - rr.top) - (rail.clientHeight / 2 - r.height / 2);
+  }
+})();
+</script>
 <script src="assets/components.js"></script>
 
 </body>

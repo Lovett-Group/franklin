@@ -55,9 +55,26 @@ header.top{position:sticky;top:0;z-index:60;background:var(--paper);
 .shell{display:flex;align-items:flex-start}
 aside.rail{width:270px;flex:0 0 270px;border-right:1px solid var(--rule);background:var(--rail);
      position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto;padding:10px 0 40px}
-.navgroup{font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
-          color:var(--ink);margin:26px 0 6px;padding:0 26px}
-.navgroup:first-child{margin-top:18px}
+/* Collapsible groups. 30-odd links in one column is a scroll, not a menu; closing the
+   sections you are not in makes the rail navigable again. <details> gives the open/close
+   behaviour and the keyboard handling for nothing. */
+details.navgroup{border-bottom:1px solid var(--rule-2)}
+details.navgroup > summary{
+  list-style:none;cursor:pointer;user-select:none;
+  font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
+  color:var(--ink);padding:14px 26px;display:flex;align-items:center;gap:9px}
+details.navgroup > summary::-webkit-details-marker{display:none}
+/* Drawn chevron: neither shipped face carries one, so a text character here would be
+   whatever symbol font the reader's OS happens to supply. */
+details.navgroup > summary::before{
+  content:"";width:7px;height:7px;flex:none;border-right:1.5px solid var(--ink-3);
+  border-bottom:1.5px solid var(--ink-3);transform:rotate(-45deg);
+  transition:transform .14s ease}
+details.navgroup[open] > summary::before{transform:rotate(45deg)}
+details.navgroup > summary:hover{background:var(--rule-2)}
+details.navgroup > *:last-child{margin-bottom:12px}
+.navsub{font-weight:600;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+        color:var(--ink-3);padding:12px 26px 4px}
 a.navlink{display:block;font-size:15.5px;color:var(--ink-2);padding:7px 26px;text-decoration:none;
           border-left:2px solid transparent}
 a.navlink:hover{color:var(--ink);background:var(--rule-2)}
@@ -358,10 +375,13 @@ footer.foot b{color:var(--ink-2);font-weight:600}
   <a class="ghlink" href="resources.html">Using the system</a>
 </div></header>
 <div class="shell">
-  <aside class="rail"><div class="navgroup">Get started</div>
+  <aside class="rail"><details class="navgroup">
+<summary>Get started</summary>
 <a class="navlink" href="index.html">Overview</a>
 <a class="navlink" href="resources.html">Using the system</a>
-<div class="navgroup">Brand</div>
+</details>
+<details class="navgroup">
+<summary>Brand</summary>
 <a class="navlink" href="about.html">About POST</a>
 <a class="navlink" href="voice.html">Voice and tone</a>
 <a class="navlink" href="logotype.html">Logotype</a>
@@ -369,30 +389,40 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="shapes.html">Shape library</a>
 <a class="navlink" href="color.html">Colour</a>
 <a class="navlink" href="typography.html">Typography</a>
-<div class="navgroup">Digital</div>
+</details>
+<details class="navgroup" open>
+<summary>Digital</summary>
 <a class="navlink" href="ramps.html">Colour ramps</a>
 <a class="navlink" href="tokens.html">Design tokens</a>
 <a class="navlink" href="icons.html">Icons</a>
 <a class="navlink on" href="components.html">Components</a>
-<div class="navgroup">Components</div>
+</details>
+<details class="navgroup">
+<summary>Components</summary>
+<div class="navsub">Actions</div>
 <a class="navlink" href="component-button.html">Button</a>
 <a class="navlink" href="component-icon-button.html">Icon Button</a>
 <a class="navlink" href="component-note-link.html">Note Link</a>
+<div class="navsub">Tags and filters</div>
 <a class="navlink" href="component-tag.html">Tag</a>
 <a class="navlink" href="component-chip.html">Chip</a>
+<div class="navsub">Form controls</div>
 <a class="navlink" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
 <a class="navlink" href="component-checkbox.html">Checkbox</a>
 <a class="navlink" href="component-radio.html">Radio</a>
 <a class="navlink" href="component-search-bar.html">Search Bar</a>
+<div class="navsub">Disclosure and feedback</div>
 <a class="navlink" href="component-accordion.html">Accordion</a>
 <a class="navlink" href="component-alert.html">Alert</a>
 <a class="navlink" href="component-progress.html">Progress Bar</a>
 <a class="navlink" href="component-scroll-dots.html">Scroll Dots</a>
+<div class="navsub">Cards</div>
 <a class="navlink" href="component-stacked-card.html">Stacked Card</a>
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
-<a class="navlink" href="component-media-thumb.html">Media Thumb</a></aside>
+<a class="navlink" href="component-media-thumb.html">Media Thumb</a>
+</details></aside>
   <main><div class="crumb">Digital</div><h1 class="page">Components</h1><p class="lede">The UI library. Every preview on these pages is rendered by the same markup the code panel shows, so what you copy is what you saw.</p><h2 class="sec">Actions</h2><div class="cards"><a class="card" href="component-button.html"><h3>Button</h3><p>The main way to commit to something — submit a form, confirm a booking, open a flow.</p><span class="go">Open</span></a><a class="card" href="component-icon-button.html"><h3>Icon Button</h3><p>A single action carried by an icon alone, with no visible label.</p><span class="go">Open</span></a><a class="card" href="component-note-link.html"><h3>Note Link</h3><p>A link that runs inside a sentence rather than sitting on its own.</p><span class="go">Open</span></a></div><h2 class="sec">Tags and filters</h2><div class="cards"><a class="card" href="component-tag.html"><h3>Tag</h3><p>A small, non-interactive label that says what something is.</p><span class="go">Open</span></a><a class="card" href="component-chip.html"><h3>Chip</h3><p>An interactive filter that turns on and off.</p><span class="go">Open</span></a></div><h2 class="sec">Form controls</h2><div class="cards"><a class="card" href="component-input.html"><h3>Input</h3><p>A single line of text entry.</p><span class="go">Open</span></a><a class="card" href="component-field.html"><h3>Field</h3><p>An input with its label, helper text and error message as one unit.</p><span class="go">Open</span></a><a class="card" href="component-select.html"><h3>Select</h3><p>A choice from a list that is too long to show all at once.</p><span class="go">Open</span></a><a class="card" href="component-checkbox.html"><h3>Checkbox</h3><p>An independent yes or no, on its own or in a list where several can be true.</p><span class="go">Open</span></a><a class="card" href="component-radio.html"><h3>Radio</h3><p>One choice from a small set where the options exclude each other.</p><span class="go">Open</span></a><a class="card" href="component-search-bar.html"><h3>Search Bar</h3><p>Free-text search over a set of content.</p><span class="go">Open</span></a></div><h2 class="sec">Disclosure and feedback</h2><div class="cards"><a class="card" href="component-accordion.html"><h3>Accordion</h3><p>A section that opens in place to reveal more.</p><span class="go">Open</span></a><a class="card" href="component-alert.html"><h3>Alert</h3><p>A message about the state of the page or of something the person just did.</p><span class="go">Open</span></a><a class="card" href="component-progress.html"><h3>Progress Bar</h3><p>How far through a process something is.</p><span class="go">Open</span></a><a class="card" href="component-scroll-dots.html"><h3>Scroll Dots</h3><p>Position within a horizontally scrolling set.</p><span class="go">Open</span></a></div><h2 class="sec">Cards</h2><div class="cards"><a class="card" href="component-stacked-card.html"><h3>Stacked Card</h3><p>A vertical card — media above, then title, text, tags and actions.</p><span class="go">Open</span></a><a class="card" href="component-horizontal-card.html"><h3>Horizontal Card</h3><p>The same card turned on its side — media beside the text rather than above it.</p><span class="go">Open</span></a><a class="card" href="component-media-thumb.html"><h3>Media Thumb</h3><p>An image that carries its own controls and captions in the corners.</p><span class="go">Open</span></a></div>
     <footer class="foot">
       <p><b>POST Houston</b> is a Lovett Commercial project. This site documents the POST
@@ -402,6 +432,21 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 </div>
 <!-- Component behaviour. Delegated from the document, so it also drives the
      previews this page renders after load. Same file the site tells you to use. -->
+<script>
+/* Put the CURRENT page in view inside the rail. The open group is chosen on the server,
+   but a component 25 links down still lands off-screen, so the rail would open scrolled
+   to the top with no sign of where you are. Scrolls the RAIL only: scrollIntoView would
+   move the document too and drop you past the heading you just navigated to. */
+(function(){
+  var rail = document.querySelector('aside.rail');
+  var on = rail && rail.querySelector('.navlink.on');
+  if(!rail || !on) return;
+  var r = on.getBoundingClientRect(), rr = rail.getBoundingClientRect();
+  if(r.top < rr.top || r.bottom > rr.bottom){
+    rail.scrollTop += (r.top - rr.top) - (rail.clientHeight / 2 - r.height / 2);
+  }
+})();
+</script>
 <script src="assets/components.js"></script>
 
 </body>

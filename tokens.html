@@ -55,9 +55,26 @@ header.top{position:sticky;top:0;z-index:60;background:var(--paper);
 .shell{display:flex;align-items:flex-start}
 aside.rail{width:270px;flex:0 0 270px;border-right:1px solid var(--rule);background:var(--rail);
      position:sticky;top:57px;height:calc(100vh - 57px);overflow-y:auto;padding:10px 0 40px}
-.navgroup{font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
-          color:var(--ink);margin:26px 0 6px;padding:0 26px}
-.navgroup:first-child{margin-top:18px}
+/* Collapsible groups. 30-odd links in one column is a scroll, not a menu; closing the
+   sections you are not in makes the rail navigable again. <details> gives the open/close
+   behaviour and the keyboard handling for nothing. */
+details.navgroup{border-bottom:1px solid var(--rule-2)}
+details.navgroup > summary{
+  list-style:none;cursor:pointer;user-select:none;
+  font-weight:600;font-size:11.5px;letter-spacing:.085em;text-transform:uppercase;
+  color:var(--ink);padding:14px 26px;display:flex;align-items:center;gap:9px}
+details.navgroup > summary::-webkit-details-marker{display:none}
+/* Drawn chevron: neither shipped face carries one, so a text character here would be
+   whatever symbol font the reader's OS happens to supply. */
+details.navgroup > summary::before{
+  content:"";width:7px;height:7px;flex:none;border-right:1.5px solid var(--ink-3);
+  border-bottom:1.5px solid var(--ink-3);transform:rotate(-45deg);
+  transition:transform .14s ease}
+details.navgroup[open] > summary::before{transform:rotate(45deg)}
+details.navgroup > summary:hover{background:var(--rule-2)}
+details.navgroup > *:last-child{margin-bottom:12px}
+.navsub{font-weight:600;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+        color:var(--ink-3);padding:12px 26px 4px}
 a.navlink{display:block;font-size:15.5px;color:var(--ink-2);padding:7px 26px;text-decoration:none;
           border-left:2px solid transparent}
 a.navlink:hover{color:var(--ink);background:var(--rule-2)}
@@ -358,10 +375,13 @@ footer.foot b{color:var(--ink-2);font-weight:600}
   <a class="ghlink" href="resources.html">Using the system</a>
 </div></header>
 <div class="shell">
-  <aside class="rail"><div class="navgroup">Get started</div>
+  <aside class="rail"><details class="navgroup">
+<summary>Get started</summary>
 <a class="navlink" href="index.html">Overview</a>
 <a class="navlink" href="resources.html">Using the system</a>
-<div class="navgroup">Brand</div>
+</details>
+<details class="navgroup">
+<summary>Brand</summary>
 <a class="navlink" href="about.html">About POST</a>
 <a class="navlink" href="voice.html">Voice and tone</a>
 <a class="navlink" href="logotype.html">Logotype</a>
@@ -369,30 +389,40 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="shapes.html">Shape library</a>
 <a class="navlink" href="color.html">Colour</a>
 <a class="navlink" href="typography.html">Typography</a>
-<div class="navgroup">Digital</div>
+</details>
+<details class="navgroup" open>
+<summary>Digital</summary>
 <a class="navlink" href="ramps.html">Colour ramps</a>
 <a class="navlink on" href="tokens.html">Design tokens</a>
 <a class="navlink" href="icons.html">Icons</a>
 <a class="navlink" href="components.html">Components</a>
-<div class="navgroup">Components</div>
+</details>
+<details class="navgroup">
+<summary>Components</summary>
+<div class="navsub">Actions</div>
 <a class="navlink" href="component-button.html">Button</a>
 <a class="navlink" href="component-icon-button.html">Icon Button</a>
 <a class="navlink" href="component-note-link.html">Note Link</a>
+<div class="navsub">Tags and filters</div>
 <a class="navlink" href="component-tag.html">Tag</a>
 <a class="navlink" href="component-chip.html">Chip</a>
+<div class="navsub">Form controls</div>
 <a class="navlink" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
 <a class="navlink" href="component-checkbox.html">Checkbox</a>
 <a class="navlink" href="component-radio.html">Radio</a>
 <a class="navlink" href="component-search-bar.html">Search Bar</a>
+<div class="navsub">Disclosure and feedback</div>
 <a class="navlink" href="component-accordion.html">Accordion</a>
 <a class="navlink" href="component-alert.html">Alert</a>
 <a class="navlink" href="component-progress.html">Progress Bar</a>
 <a class="navlink" href="component-scroll-dots.html">Scroll Dots</a>
+<div class="navsub">Cards</div>
 <a class="navlink" href="component-stacked-card.html">Stacked Card</a>
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
-<a class="navlink" href="component-media-thumb.html">Media Thumb</a></aside>
+<a class="navlink" href="component-media-thumb.html">Media Thumb</a>
+</details></aside>
   <main><div class="crumb">Digital</div><h1 class="page">Design tokens</h1><p class="lede">Every value below is read out of the stylesheet that ships. If it is not here, it is not in the system.</p><p class="body">Tokens are named for how big they are, never for what uses them. <code>space/m</code> and <code>stroke/m</code> and <code>icon-size/m</code> all mean "the middle step", so a layout reads on one scale instead of a dozen component-specific ones.</p><h2 class="sec">Spacing</h2><p class="note">The 4-based ramp. Outer padding on a control is uniform; the label carries its own inset.</p><table class="t"><thead><tr><th>Token</th><th>Value at base</th></tr></thead><tbody><tr><td class="tok">--space-12</td><td class="val">12px</td></tr><tr><td class="tok">--space-128</td><td class="val">128px</td></tr><tr><td class="tok">--space-16</td><td class="val">16px</td></tr><tr><td class="tok">--space-20</td><td class="val">20px</td></tr><tr><td class="tok">--space-24</td><td class="val">24px</td></tr><tr><td class="tok">--space-32</td><td class="val">32px</td></tr><tr><td class="tok">--space-4</td><td class="val">4px</td></tr><tr><td class="tok">--space-40</td><td class="val">40px</td></tr><tr><td class="tok">--space-48</td><td class="val">48px</td></tr><tr><td class="tok">--space-64</td><td class="val">64px</td></tr><tr><td class="tok">--space-8</td><td class="val">8px</td></tr><tr><td class="tok">--space-80</td><td class="val">80px</td></tr><tr><td class="tok">--space-96</td><td class="val">96px</td></tr><tr><td class="tok">--space-6</td><td class="val">6px</td></tr><tr><td class="tok">--space-l</td><td class="val">var(--space-12)</td></tr><tr><td class="tok">--space-m</td><td class="val">var(--space-8)</td></tr><tr><td class="tok">--space-s</td><td class="val">var(--space-6)</td></tr><tr><td class="tok">--space-xs</td><td class="val">var(--space-4)</td></tr><tr><td class="tok">--space-xl</td><td class="val">var(--space-16)</td></tr></tbody></table><h2 class="sec">Stroke</h2><p class="note">Stroke is altitude, not component: detail, component, section.</p><table class="t"><thead><tr><th>Token</th><th>Value at base</th></tr></thead><tbody><tr><td class="tok">--stroke-1</td><td class="val">1px</td></tr><tr><td class="tok">--stroke-2</td><td class="val">2px</td></tr><tr><td class="tok">--stroke-3</td><td class="val">3px</td></tr><tr><td class="tok">--stroke-l</td><td class="val">var(--stroke-2)</td></tr><tr><td class="tok">--stroke-m</td><td class="val">var(--stroke-1)</td></tr><tr><td class="tok">--stroke-s</td><td class="val">var(--stroke-1)</td></tr></tbody></table><h2 class="sec">Icon size</h2><p class="note">The tier a control&#x27;s height comes from - never its text.</p><table class="t"><thead><tr><th>Token</th><th>Value at base</th></tr></thead><tbody><tr><td class="tok">--icon-size-16</td><td class="val">16px</td></tr><tr><td class="tok">--icon-size-24</td><td class="val">24px</td></tr><tr><td class="tok">--icon-size-32</td><td class="val">32px</td></tr><tr><td class="tok">--icon-size-48</td><td class="val">48px</td></tr><tr><td class="tok">--icon-size-l</td><td class="val">var(--icon-size-32)</td></tr><tr><td class="tok">--icon-size-m</td><td class="val">var(--icon-size-24)</td></tr><tr><td class="tok">--icon-size-s</td><td class="val">var(--icon-size-16)</td></tr></tbody></table><h2 class="sec">Type size</h2><p class="note">Responsive roles. These step at the breakpoints; the raw sizes behind them do not.</p><table class="t"><thead><tr><th>Token</th><th>Value at base</th></tr></thead><tbody><tr><td class="tok">--text-display</td><td class="val">var(--font-size-48)</td></tr><tr><td class="tok">--text-display-inset</td><td class="val">-3.7px</td></tr><tr><td class="tok">--text-hero</td><td class="val">var(--font-size-40)</td></tr><tr><td class="tok">--text-lg</td><td class="val">var(--font-size-24)</td></tr><tr><td class="tok">--text-md</td><td class="val">var(--font-size-18)</td></tr><tr><td class="tok">--text-sm</td><td class="val">var(--font-size-16)</td></tr><tr><td class="tok">--text-xl</td><td class="val">var(--font-size-28)</td></tr><tr><td class="tok">--text-xs</td><td class="val">var(--font-size-16)</td></tr><tr><td class="tok">--text-xxl</td><td class="val">var(--font-size-32)</td></tr></tbody></table><h2 class="sec">Layout</h2><p class="note">Gutters and margins for the page grid.</p><table class="t"><thead><tr><th>Token</th><th>Value at base</th></tr></thead><tbody><tr><td class="tok">--layout-gutter</td><td class="val">var(--space-16)</td></tr><tr><td class="tok">--layout-max-width</td><td class="val">var(--size-content-max)</td></tr><tr><td class="tok">--layout-page</td><td class="val">var(--space-16)</td></tr><tr><td class="tok">--layout-section</td><td class="val">var(--space-64)</td></tr></tbody></table><h2 class="sec">Semantic colour</h2><p class="note">Colour tokens resolve through two axes and are documented on the <a href="color.html">Colour</a> page, where you can switch both and watch them move.</p>
     <footer class="foot">
       <p><b>POST Houston</b> is a Lovett Commercial project. This site documents the POST
@@ -402,6 +432,21 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 </div>
 <!-- Component behaviour. Delegated from the document, so it also drives the
      previews this page renders after load. Same file the site tells you to use. -->
+<script>
+/* Put the CURRENT page in view inside the rail. The open group is chosen on the server,
+   but a component 25 links down still lands off-screen, so the rail would open scrolled
+   to the top with no sign of where you are. Scrolls the RAIL only: scrollIntoView would
+   move the document too and drop you past the heading you just navigated to. */
+(function(){
+  var rail = document.querySelector('aside.rail');
+  var on = rail && rail.querySelector('.navlink.on');
+  if(!rail || !on) return;
+  var r = on.getBoundingClientRect(), rr = rail.getBoundingClientRect();
+  if(r.top < rr.top || r.bottom > rr.bottom){
+    rail.scrollTop += (r.top - rr.top) - (rail.clientHeight / 2 - r.height / 2);
+  }
+})();
+</script>
 <script src="assets/components.js"></script>
 
 </body>

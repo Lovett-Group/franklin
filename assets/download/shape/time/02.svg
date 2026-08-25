@@ -1,13 +1,3 @@
 <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Frame">
-<g id="time">
-<g id="grid">
-<g id="cell">
-<g id="shape/time/02">
-<path id="vector/time/02" d="M45.2 50.5745H26.8L28.84 21.4255L30.835 21.5645L28.945 48.5745H45.2V50.5745Z" fill="#0016C1"/>
-</g>
-</g>
-</g>
-</g>
-</g>
+<path d="M51.4 39.149H33L35.04 10L37.035 10.139L35.145 37.149H51.4V39.149Z" fill="#0016C1"/>
 </svg>

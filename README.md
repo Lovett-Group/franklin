@@ -56,6 +56,7 @@ which reads:
 | `foundation/*.json` + `foundation/assets` | brand colour, logo lockups, shape library |
 | `public/brand.json` | the brand guidelines writing (voice, rules, history) |
 | `public/components-copy.json` | the public "what is this for" copy per component |
+| `public/shape-scale.json` | optical size corrections for individual shapes &mdash; a stopgap for artwork that should be redrawn in Figma |
 
 To rebuild and republish:
 

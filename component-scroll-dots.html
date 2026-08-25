@@ -160,6 +160,19 @@ table.t td.val{font-family:var(--mono);font-size:13px;font-variant-numeric:tabul
 .seg button.on{background:var(--ink);color:#fff;font-weight:600}
 .seg button i{width:11px;height:11px;display:block;flex:none;border:1px solid rgba(128,128,128,.4)}
 
+/* live axis switcher — one row per axis, above the preview it drives */
+.axisctl{display:flex;flex-direction:column;gap:9px;padding:13px 16px;
+  border-bottom:1px solid var(--rule);background:var(--paper)}
+.axisctl:empty{display:none}
+.axisrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.axisrow .lbl{min-width:58px;flex:none}
+.axisrow .seg{flex:0 0 auto}
+.axisrow .seg button{font-size:13px;padding:6px 13px}
+/* Marks which option the component ships with, so the gallery is not just a set of
+   equals - one of them is what you get if you write nothing. */
+.mcell .st .deflt{font-family:var(--sans);font-weight:500;font-size:10px;letter-spacing:.05em;
+  text-transform:none;color:var(--ink-3);border:1px solid var(--rule);padding:1px 5px;margin-left:7px}
+
 /* previews */
 .stage{border:1px solid var(--rule);margin:18px 0}
 .stage .sh{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
@@ -192,9 +205,21 @@ table.t td.val{font-family:var(--mono);font-size:13px;font-variant-numeric:tabul
 
 /* icons */
 .icongrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px;margin:18px 0 26px}
-.iconcell{border:1px solid var(--rule);padding:18px 10px 12px;text-align:center;background:var(--paper);
-  display:block;text-decoration:none;color:inherit;transition:border-color .12s ease}
+.iconcell{position:relative;border:1px solid var(--rule);background:var(--paper)}
 .iconcell:hover{border-color:var(--ink)}
+.iconcell .pick{width:100%;border:none;background:none;cursor:pointer;font-family:var(--sans);
+  padding:18px 10px 12px;display:flex;flex-direction:column;align-items:center;gap:11px}
+.iconcell .pick .nm{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);
+  word-break:break-all;line-height:1.35}
+.iconcell .grab{position:absolute;top:0;right:0;width:26px;height:26px;display:block;
+  background-repeat:no-repeat;background-position:center;background-size:13px 13px;opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2314161c' stroke-width='1.7'%3E%3Cpath d='M8 2v8M4.5 7l3.5 3.5L11.5 7M2.5 13.5h11'/%3E%3C/svg%3E")}
+.iconcell .grab:hover,.iconcell .grab:focus-visible{opacity:1;background-color:var(--rule-2);outline:none}
+.iconcell:hover .grab{opacity:.62}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(12px);
+  background:var(--ink);color:#fff;font-size:14px;padding:10px 18px;opacity:0;pointer-events:none;
+  transition:opacity .16s ease,transform .16s ease;z-index:200}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .iconcell svg{width:26px;height:26px;color:var(--ink)}
 .iconcell .nm{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);margin-top:11px;word-break:break-all;line-height:1.35}
 
@@ -416,7 +441,7 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="component-stacked-card.html">Stacked Card</a>
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
 <a class="navlink" href="component-media-thumb.html">Media Thumb</a></aside>
-  <main><div class="crumb">Components</div><h1 class="page">Scroll Dots</h1><p class="lede">Position within a horizontally scrolling set.</p><p class="body">Use it with a carousel or a scrolling row of cards, so people know how much is left.</p><div class="panel"><b>Watch out.</b> It is an indicator first. Don&#x27;t rely on the dots alone as the way to move between items.</div><div class="switch"><span class="lbl">Sub-brand</span><div class="seg" data-axis="brand"><button class="on" data-v="post"><i style="background:#0016C1"></i>post</button><button class="" data-v="culture"><i style="background:#34885D"></i>culture</button><button class="" data-v="eat"><i style="background:#F54544"></i>eat</button><button class="" data-v="music"><i style="background:#676767"></i>music</button><button class="" data-v="shop"><i style="background:#EA3ADD"></i>shop</button><button class="" data-v="skylawn"><i style="background:#2DB2EB"></i>skylawn</button><button class="" data-v="work"><i style="background:#994B03"></i>work</button></div><span class="lbl">Theme</span><div class="seg" data-axis="theme"><button class="on" data-v="light">light</button><button class="" data-v="warm">warm</button><button class="" data-v="brand">brand</button><button class="" data-v="deep">deep</button></div></div><div class="stage"><div class="sh"><span>Live</span><span>rendered from the shipped recipe</span></div><div class="stagebody"><div data-recipe="scroll-dots" data-state="{}"></div></div></div><h2 class="sec">Code</h2><p class="note">The HTML for the live example above is on the page - use your browser's inspector, or copy the CSS here and the markup from the preview. Load <code>post-ui.css</code> once per site and this component works anywhere.</p><div class="code" data-code="code-scroll-dots"><div class="bar"><button class="on" data-t="code-scroll-dots-0">CSS</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="code-scroll-dots-0">/* ============================================================================
+  <main><div class="crumb">Components</div><h1 class="page">Scroll Dots</h1><p class="lede">Position within a horizontally scrolling set.</p><p class="body">Use it with a carousel or a scrolling row of cards, so people know how much is left.</p><div class="panel"><b>Watch out.</b> It is an indicator first. Don&#x27;t rely on the dots alone as the way to move between items.</div><div class="switch"><span class="lbl">Sub-brand</span><div class="seg" data-axis="brand"><button class="on" data-v="post"><i style="background:#0016C1"></i>post</button><button class="" data-v="culture"><i style="background:#34885D"></i>culture</button><button class="" data-v="eat"><i style="background:#F54544"></i>eat</button><button class="" data-v="music"><i style="background:#676767"></i>music</button><button class="" data-v="shop"><i style="background:#EA3ADD"></i>shop</button><button class="" data-v="skylawn"><i style="background:#2DB2EB"></i>skylawn</button><button class="" data-v="work"><i style="background:#994B03"></i>work</button></div><span class="lbl">Theme</span><div class="seg" data-axis="theme"><button class="on" data-v="light">light</button><button class="" data-v="warm">warm</button><button class="" data-v="brand">brand</button><button class="" data-v="deep">deep</button></div></div><div class="stage" id="live-scroll-dots">  <div class="sh"><span>Live</span><span>rendered from the shipped recipe</span></div>  <div class="axisctl" data-axisctl data-ctl-recipe="scroll-dots" data-axes="{}" data-base="{}" data-target="#live-scroll-dots .stagebody"></div>  <div class="stagebody"><div data-recipe="scroll-dots" data-state="{}"></div></div></div><h2 class="sec">Code</h2><p class="note">The HTML for the live example above is on the page - use your browser's inspector, or copy the CSS here and the markup from the preview. Load <code>post-ui.css</code> once per site and this component works anywhere.</p><div class="code" data-code="code-scroll-dots"><div class="bar"><button class="on" data-t="code-scroll-dots-0">CSS</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="code-scroll-dots-0">/* ============================================================================
    POST UI System — components
    HAND-WRITTEN. Not generated: this file encodes the RULES the components follow,
    which is not the same thing as whatever the Figma canvas currently looks like.
@@ -858,12 +883,72 @@ const RECIPES={
 <script>
 /* Each preview is produced by the same markup recipe the component ships with, so what
    you see here is what the component actually renders. */
+/* [data-recipe] means "render a component HERE". It must never be used as a config
+   attribute on anything else: this pass paints into every element carrying it, so an
+   axis control that borrowed the name got a whole component injected above its own
+   buttons. Config attributes on other elements are prefixed data-ctl-*. */
 document.querySelectorAll('[data-recipe]').forEach(function(slot){
   var R=(typeof RECIPES!=='undefined') && RECIPES[slot.getAttribute('data-recipe')];
   if(!R || !R.html){ slot.innerHTML='<span class="lbl">preview unavailable</span>'; return; }
   var s=Object.assign({},R.defaults||{});
   try{ Object.assign(s, JSON.parse(slot.getAttribute('data-state')||'{}')); }catch(e){}
   slot.innerHTML=R.html(s);
+});
+</script>
+
+<script>
+/* Axis switcher for the live preview.
+   Two sources of axes, deliberately merged here rather than in the generator:
+     - Figma variant axes (Style, Size, Tone...) arrive as data-axes from components.json
+     - recipe extras (icon slots, card tags, progress value) live in recipes.js
+   Reading extras at runtime means recipes.js stays the only place they are declared. */
+document.querySelectorAll('[data-axisctl]').forEach(function(ctl){
+  var key = ctl.getAttribute('data-ctl-recipe');
+  var R = (typeof RECIPES !== 'undefined') && RECIPES[key];
+  if(!R || !R.html) return;
+  var target = document.querySelector(ctl.getAttribute('data-target'));
+  if(!target) return;
+
+  var axes = {};
+  try { axes = JSON.parse(ctl.getAttribute('data-axes') || '{}'); } catch(e){}
+  (R.extras || []).forEach(function(e){
+    if(e && e.name && e.options && e.options.length) axes[e.name] = e.options;
+  });
+  if(!Object.keys(axes).length){ ctl.remove(); return; }
+
+  var state = Object.assign({}, R.defaults || {});
+  try { Object.assign(state, JSON.parse(ctl.getAttribute('data-base') || '{}')); } catch(e){}
+
+  function paint(){
+    try { target.innerHTML = R.html(Object.assign({}, state)); }
+    catch(e){ target.innerHTML = '<span class="lbl">preview unavailable</span>'; }
+  }
+
+  Object.keys(axes).forEach(function(name){
+    var row = document.createElement('div');
+    row.className = 'axisrow';
+    var lab = document.createElement('span');
+    lab.className = 'lbl'; lab.textContent = name;
+    row.appendChild(lab);
+    var seg = document.createElement('div');
+    seg.className = 'seg';
+    axes[name].forEach(function(opt){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = String(opt);
+      if(String(state[name]) === String(opt)) b.className = 'on';
+      b.addEventListener('click', function(){
+        seg.querySelectorAll('button').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on');
+        state[name] = opt;
+        paint();
+      });
+      seg.appendChild(b);
+    });
+    row.appendChild(seg);
+    ctl.appendChild(row);
+  });
+  paint();
 });
 </script>
 

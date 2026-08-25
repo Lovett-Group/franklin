@@ -20,8 +20,9 @@ about.html            what POST is, the name, the history
 voice.html            voice and tone, the lexicon, the three audiences
 logotype.html         the wordmark, clearspace, placement, repetition
 identity.html         Sticks and the Graphic Swap
-shapes.html           the 79-shape library, downloadable
-swap.html             the Graphic Swap builder - compose a lockup and export it
+shapes.html           the 79-shape library AND the Graphic Swap builder - pick a
+                      shape to compose a lockup, or grab any shape on its own
+swap.html             redirect, kept so the old URL does not 404
 color.html            brand colour, destination identities, the two semantic axes
 typography.html       the typeface, the digital scale, print preferences
 ramps.html            the primitive colour ramps and their anchor steps

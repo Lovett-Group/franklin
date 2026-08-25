@@ -7,6 +7,7 @@
 <meta name="description" content="The design system for POST Houston - brand, voice, colour, typography and the UI component library.">
 <!-- The brand face, from the same Adobe Fonts kit posthtx.com uses. A <link> rather than
      an @import so it starts downloading immediately instead of waiting on the CSS parser. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22%230016C1%22%3E%3Cpath%20d%3D%22M8.499%206.14L11.062%201.693L11.266%201.811L11.923%202.191L11.806%202.396L9.357%206.644L13.605%204.195L13.809%204.077L13.927%204.281L14.189%204.735L14.307%204.94L9.862%207.503H15V8.498H9.86L14.101%2010.943L14.304%2011.061L13.807%2011.923L9.357%209.357L11.806%2013.604L11.923%2013.809L11.266%2014.189L11.062%2014.307L8.499%209.862V15H7.504V9.86L4.941%2014.307L4.737%2014.189L4.08%2013.809L4.196%2013.604L6.645%209.355L2.396%2011.806L2.192%2011.923L1.812%2011.266L1.694%2011.061L6.139%208.498H1V7.503H6.14L1.695%204.94L1.813%204.735L2.075%204.282L2.193%204.078L6.643%206.644L4.196%202.396L4.078%202.192L4.282%202.074L4.736%201.812L4.94%201.694L7.503%206.14V1H8.499V6.14Z%22%2F%3E%3C%2Fsvg%3E">
 <link rel="stylesheet" href="https://use.typekit.net/wnx0ooa.css">
 <link rel="stylesheet" href="assets/post-ui.css">
 <style>
@@ -112,6 +113,11 @@ a.card:hover{border-color:var(--ink);box-shadow:0 2px 0 var(--ink)}
 ul.plain{list-style:none;display:flex;flex-direction:column;gap:9px;margin:14px 0 20px;max-width:70ch}
 ul.plain li{font-size:16.5px;line-height:1.55;color:var(--ink-2);padding-left:20px;position:relative}
 ul.plain li:before{content:"";position:absolute;left:0;top:12px;width:10px;height:1px;background:var(--ink-3)}
+
+/* The lexicon: a word bank, not twenty cards. Twenty bordered boxes read as twenty
+   things to decide between; a bank reads as a vocabulary to draw from. */
+.wordbank{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0 24px;max-width:76ch}
+.wordbank span{border:1px solid var(--rule);padding:8px 14px;font-size:16px;color:var(--ink)}
 
 /* do / don't */
 .dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin:22px 0}
@@ -349,11 +355,19 @@ table.t td.val{font-family:var(--mono);font-size:13px;font-variant-numeric:tabul
 .hero .mark{margin-bottom:clamp(28px,4vw,46px)}
 .hero .mark svg{height:38px;width:auto;display:block}
 .hero .mark svg [fill="#0016C1"]{fill:#fff}
-.pill{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;
-      margin-top:clamp(40px,5vw,64px);background:rgba(255,255,255,.3)}
-.pill div{background:var(--accent);padding:22px 24px}
-.pill b{display:block;font-size:17px;font-weight:600;margin-bottom:6px}
-.pill span{font-size:15px;color:rgba(255,255,255,.84);line-height:1.5}
+/* The tone line, set as large as the masthead allows - it is a statement, not a caption. */
+.hero .tone{font-size:clamp(28px,3.4vw,44px);line-height:1.05;letter-spacing:-.025em;
+  margin-top:clamp(32px,4vw,52px);color:#fff;max-width:20ch}
+/* Ways in. Plain links on the brand plane: a doorway's job is to get you out of it, so
+   these are targets rather than cards with a paragraph each explaining where they go. */
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:1px;
+  margin-top:clamp(38px,5vw,60px);background:rgba(255,255,255,.28)}
+a.wayin{background:var(--accent);color:#fff;text-decoration:none;padding:18px 20px;
+  font-size:16.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;
+  justify-content:space-between;gap:12px;transition:background .12s ease}
+a.wayin::after{content:"";width:8px;height:8px;flex:none;border-top:1.5px solid currentColor;
+  border-right:1.5px solid currentColor;transform:rotate(45deg);opacity:.65}
+a.wayin:hover{background:#fff;color:var(--accent)}
 
 footer.foot{border-top:1px solid var(--rule);margin-top:80px;padding:34px 0 0;
             font-size:15px;color:var(--ink-3);max-width:70ch}
@@ -432,17 +446,14 @@ footer.foot b{color:var(--ink-2);font-weight:600}
   <aside class="rail"><details class="navgroup">
 <summary>Get started</summary>
 <a class="navlink" href="index.html">Overview</a>
-<a class="navlink" href="resources.html">Using the system</a>
 </details>
 <details class="navgroup">
 <summary>Brand</summary>
-<a class="navlink" href="about.html">About POST</a>
-<a class="navlink" href="voice.html">Voice and tone</a>
-<a class="navlink" href="logotype.html">Logotype</a>
-<a class="navlink" href="identity.html">Graphic identity</a>
-<a class="navlink" href="shapes.html">Shape library</a>
+<a class="navlink" href="story.html">Story and tone</a>
 <a class="navlink" href="color.html">Colour</a>
 <a class="navlink" href="typography.html">Typography</a>
+<a class="navlink" href="logotype.html">Logotype</a>
+<a class="navlink" href="shapes.html">Graphic and shapes</a>
 </details>
 <details class="navgroup">
 <summary>Digital</summary>
@@ -450,6 +461,7 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="tokens.html">Design tokens</a>
 <a class="navlink" href="icons.html">Icons</a>
 <a class="navlink" href="components.html">Components</a>
+<a class="navlink" href="resources.html">Using the system</a>
 </details>
 <details class="navgroup" open>
 <summary>Components</summary>
@@ -675,9 +687,9 @@ const RECIPES={
       +'</div>');
     if(acts!=='none'){
       const B=['    <div class="post-card__actions">'];
-      B.push('      <button class="post-btn post-btn--outline post-btn--s">'
+      B.push('      <button class="post-btn post-btn--filled post-btn--s">'
         +'<span class="post-label">Action 1</span></button>');
-      if(acts==='two') B.push('      <button class="post-btn post-btn--ghost post-btn--s">'
+      if(acts==='two') B.push('      <button class="post-btn post-btn--outline post-btn--s">'
         +'<span class="post-label">Action 2</span></button>');
       B.push('    </div>');
       L.push(B.join('\n'));
@@ -708,9 +720,9 @@ const RECIPES={
       +'</div>');
     if(acts!=='none'){
       const B=['    <div class="post-card__actions">'];
-      B.push('      <button class="post-btn post-btn--outline post-btn--s">'
+      B.push('      <button class="post-btn post-btn--filled post-btn--s">'
         +'<span class="post-label">Action 1</span></button>');
-      if(acts==='two') B.push('      <button class="post-btn post-btn--ghost post-btn--s">'
+      if(acts==='two') B.push('      <button class="post-btn post-btn--outline post-btn--s">'
         +'<span class="post-label">Action 2</span></button>');
       B.push('    </div>');
       L.push(B.join('\n'));

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Using the system &middot; POST Design System</title>
+<title>Story and tone &middot; POST Design System</title>
 <meta name="description" content="The design system for POST Houston - brand, voice, colour, typography and the UI component library.">
 <!-- The brand face, from the same Adobe Fonts kit posthtx.com uses. A <link> rather than
      an @import so it starts downloading immediately instead of waiting on the CSS parser. -->
@@ -393,21 +393,21 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <summary>Get started</summary>
 <a class="navlink" href="index.html">Overview</a>
 </details>
-<details class="navgroup">
+<details class="navgroup" open>
 <summary>Brand</summary>
-<a class="navlink" href="story.html">Story and tone</a>
+<a class="navlink on" href="story.html">Story and tone</a>
 <a class="navlink" href="color.html">Colour</a>
 <a class="navlink" href="typography.html">Typography</a>
 <a class="navlink" href="logotype.html">Logotype</a>
 <a class="navlink" href="shapes.html">Graphic and shapes</a>
 </details>
-<details class="navgroup" open>
+<details class="navgroup">
 <summary>Digital</summary>
 <a class="navlink" href="ramps.html">Colour ramps</a>
 <a class="navlink" href="tokens.html">Design tokens</a>
 <a class="navlink" href="icons.html">Icons</a>
 <a class="navlink" href="components.html">Components</a>
-<a class="navlink on" href="resources.html">Using the system</a>
+<a class="navlink" href="resources.html">Using the system</a>
 </details>
 <details class="navgroup">
 <summary>Components</summary>
@@ -435,8 +435,7 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
 <a class="navlink" href="component-media-thumb.html">Media Thumb</a>
 </details></aside>
-  <main><div class="crumb">Get started</div><h1 class="page">Using the system</h1><p class="lede">Three files. Load them once and every component on this site works in your page.</p><h2 class="sec">1 &middot; Styles</h2><p class="note">Tokens, type and every component class, in one stylesheet.</p><div class="code" data-code="r1"><div class="bar"><button class="on" data-t="r1-0">HTML</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="r1-0">&lt;link rel=&quot;stylesheet&quot; href=&quot;assets/post-ui.css&quot;&gt;</pre></div><h2 class="sec">2 &middot; Behaviour</h2><p class="note">Select, Checkbox, Radio, Accordion, Search and Chips need this. Static components do not, but one script covers the page either way. Listeners are delegated from the document and state lives in the DOM, so it survives re-renders.</p><div class="code" data-code="r2"><div class="bar"><button class="on" data-t="r2-0">HTML</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="r2-0">&lt;script src=&quot;assets/components.js&quot;&gt;&lt;/script&gt;</pre></div><h2 class="sec">3 &middot; Icons</h2><p class="note">The sprite defines the glyphs; it draws nothing on its own. Paste it once per page that uses an icon.</p><div class="code" data-code="r3"><div class="bar"><button class="on" data-t="r3-0">HTML</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="r3-0">&lt;!-- paste the contents of assets/icons.svg near the top of &lt;body&gt; --&gt;
-&lt;svg class=&quot;post-icon&quot;&gt;&lt;use href=&quot;#post-icon-search&quot;/&gt;&lt;/svg&gt;</pre></div><h2 class="sec">Typefaces</h2><p class="note"><b>Neue Haas Grotesk Display</b> is a licensed Monotype typeface. It is served here from POST's Adobe Fonts kit and is <b>not</b> redistributed with these files - you need your own licence to use it in your own product. If the kit does not load, the stylesheet falls back to a metric-matched local face so layout holds its line breaks instead of reflowing.</p><p class="note"><b>JetBrains Mono</b> is used for code and token names. It is licensed under the SIL Open Font License and ships with these files.</p><h2 class="sec">Permissions</h2><p class="note">POST Houston is a Lovett Commercial project. The logotype, the shape library and the POST name are POST&#x27;s own marks — please ask before using them outside POST and its tenants.</p><div class="panel"><b>Brand, asset and permission enquiries</b><br>Lovett Commercial</div>
+  <main><div class="crumb">Brand</div><h1 class="page">Story and tone</h1><p class="lede">POST Houston is a landmark destination in the heart of downtown — 500,000 square feet of historic post office building, on a 16-acre campus, merging food, shopping, entertainment and the arts.</p><p class="body">POST is more than a brand or a destination. It is an experience that encourages you to imagine what could be. Whether you are a foodie searching for local or international cuisine, an urban explorer seeking a new adventure, or an entrepreneur growing your company, there is something at POST that inspires the imagination.</p><p class="body">As the most diverse city in the US, Houston is past due for a new cultural anchor that is at once accessible and boundary-pushing. This is a place where it is ok to get lost; a new adventure lies around the corner.</p><h2 class="sec">The name</h2><p class="note">The name POST bridges the building&#x27;s history with its aspirations for innovative 21st century programming.</p><ul class="plain"><li>It references the post office while asking the question “What&#x27;s next?”</li><li>It gives us a highly flexible logotype that can accommodate a range of possibilities.</li></ul><div class="panel"><b>The POST name is always stylised in uppercase, and is never joined with other words.</b></div><h2 class="sec">History</h2><table class="t"><thead><tr><th>When</th><th>What happened</th></tr></thead><tbody><tr><td class="val">1934</td><td>Built as the city&#x27;s gateway for travellers and freight, serving as Houston&#x27;s Grand Central Station.</td></tr><tr><td class="val">late 1950s</td><td>Purchased by the US Government and repurposed as the main post office for the city of Houston.</td></tr><tr><td class="val">1962</td><td>The post office opens.</td></tr><tr><td class="val">1987</td><td>Named for Barbara Jordan, the South&#x27;s first female African American legislator elected to the US Congress.</td></tr><tr><td class="val">2015</td><td>The US Government decommissions the Barbara Jordan Post Office and later sells the building to Lovett Commercial.</td></tr><tr><td class="val">today</td><td>POST reinvigorates the city&#x27;s Theatre District as an adaptive reuse cultural epicentre linking past and future.</td></tr></tbody></table><h2 class="sec">The three pillars</h2><div class="cards"><div class="card"><h3>Enrich</h3><p>Culture. Ambition. Style.</p></div><div class="card"><h3>Recharge</h3><p>Leisure. Reflection. Self-care.</p></div><div class="card"><h3>Explore</h3><p>Adventure. Gastronomy. City.</p></div></div><h2 class="sec">How POST sounds</h2><p class="lede">POST&#x27;s voice tells stories in an authentic and direct tone — as if speaking to an old friend, at once erudite and accessible.</p><p class="body">While our messaging is bold and fearless, it should also strive to be empathetic and judicious. Our stories radiate warmth, charm and humility.</p><div class="dd"><section class="yes"><h4>Do</h4><ul><li>Be concise and honest</li><li>Use plain English</li><li>Ask a question</li><li>Engage your audience</li><li>Use action verbs</li><li>Use words from our lexicon</li></ul></section><section class="no"><h4>Don&rsquo;t</h4><ul><li>Use hyperbole or exaggerate</li><li>Use clichés or marketing jargon</li><li>Overuse exclamation points</li><li>Engage in highly sensitive or potentially offensive discourse</li><li>Use criticism</li></ul></section></div><h2 class="sec">Our lexicon</h2><p class="note">How do we want our guests to feel?</p><div class="wordbank"><span>Uninhibited</span><span>Free</span><span>Creative</span><span>Odd</span><span>Adventurous</span><span>Traveled</span><span>Story</span><span>Wanderlust</span><span>Cultured</span><span>Elegant</span><span>Challenged</span><span>Enlightened</span><span>Empowered</span><span>Beautiful</span><span>Welcomed</span><span>Proud</span><span>Reflective</span><span>Peaceful</span><span>Unique</span><span>Edgy</span></div><h2 class="sec">Who is speaking</h2><div class="panel"><b>The key distinction.</b> We view ourselves as cheeky documentarians chronicling the activity at POST. A tenant&#x27;s voice is focused on active promotion of their concept and on driving visitation.</div><div class="rulebox"><b>POST speaking to guests</b><span>Our audience is the people who follow our social media, see our advertisements, view our website and visit our space. Campaigns should be authentic, engaging and reflective of that audience.</span></div><div class="rulebox"><b>POST speaking to tenants</b><span>POST is a resource that supports tenants with clear information about the project as well as guidelines for best media practice. Be informative, direct and to the point. Avoid marketing jargon and be transparent.</span></div><div class="rulebox"><b>Tenants speaking to guests</b><span>Tenants each have their own voice, and should leverage POST&#x27;s existing assets in order to maximise brand reach and content engagement.</span></div>
     <footer class="foot">
       <p><b>POST Houston</b> is a Lovett Commercial project. This site documents the POST
       brand and its digital design system.</p>
@@ -461,31 +460,6 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 })();
 </script>
 <script src="assets/components.js"></script>
-
-<script>
-/* Code tabs + copy. No framework: the page is a document, and a document that needs a
-   bundle to show a tab is a worse document. */
-document.querySelectorAll('[data-code]').forEach(function(box){
-  var btns=box.querySelectorAll('.bar button[data-t]');
-  btns.forEach(function(b){
-    b.addEventListener('click',function(){
-      btns.forEach(function(x){x.classList.remove('on');});
-      b.classList.add('on');
-      box.querySelectorAll('pre').forEach(function(p){p.hidden=true;});
-      var t=document.getElementById(b.getAttribute('data-t'));
-      if(t) t.hidden=false;
-    });
-  });
-  var cp=box.querySelector('.cp');
-  if(cp) cp.addEventListener('click',function(){
-    var open=box.querySelector('pre:not([hidden])');
-    if(!open) return;
-    navigator.clipboard.writeText(open.textContent).then(function(){
-      var old=cp.textContent; cp.textContent='Copied'; setTimeout(function(){cp.textContent=old;},1200);
-    });
-  });
-});
-</script>
 
 </body>
 </html>

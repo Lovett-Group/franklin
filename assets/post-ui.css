@@ -1793,11 +1793,18 @@ textarea.post-input { line-height: 1.2; resize: vertical; min-height: 6em; }
    category in mind for something they have not been told about yet. */
 .post-card__tags { display: flex; flex-wrap: wrap; gap: var(--space-s); }
 
-/* ACTIONS LAST, and outline + ghost rather than filled + outline. The CARD is already the
-   primary target - a filled button inside it is a second, louder primary competing with the
-   thing that contains it, and on a media card the solid brand block fights the photograph
-   directly above it. Outline leads, ghost follows, and `filled` stays reserved for
-   page-level actions OUTSIDE cards, which is what keeps the Button hierarchy meaningful. */
+/* ACTIONS LAST, and FILLED + OUTLINE.
+   REVERSED 2026-08-25. This row was outline + ghost, on the argument that the card is
+   already the primary target and a filled button inside it competes with the thing that
+   contains it. The call now is the other way: outline + ghost read as two secondary
+   actions with no clear first move, and a card whose whole point is to be acted on should
+   say which action that is. Filled leads, outline follows.
+
+   What that costs, recorded so it is a known trade and not a surprise: `filled` no longer
+   means "page-level action" exclusively, so the Button hierarchy is now carried by SIZE
+   and CONTEXT rather than by style alone - card actions are size s, page actions size l.
+   On a media card the solid brand block does sit directly under the photograph; if that
+   reads badly on a real image, this is the decision to revisit first. */
 /* ACTIONS SIT FURTHER DOWN THAN THE REST OF THE STACK. The body gaps everything at
    space/m, which is right between text and tags - they are both description of the same
    thing. Actions are not description, they are the thing you DO, and at the same gap they
@@ -1810,7 +1817,12 @@ textarea.post-input { line-height: 1.2; resize: vertical; min-height: 6em; }
   margin-top: var(--space-s);
 }
 
-/* LEAVE GHOST'S NEGATIVE MARGIN ALONE in this row. It looks like it should be cancelled -
+/* NOTE: as of 2026-08-25 this row is filled + outline, so no ghost button appears in it and
+   the rule below no longer fires here. It is kept because it is the reasoning for ghost's
+   negative margin ANYWHERE, and because reverting the action styles would make it live
+   again. If ghost ever returns to a card row, this is why the margin stays.
+
+   LEAVE GHOST'S NEGATIVE MARGIN ALONE in this row. It looks like it should be cancelled -
    a -space/s pull on the second button reads like it will eat the gap - and cancelling it is
    wrong. The gap is measured between BOXES, but what a person sees is the distance to the
    LABEL, and the label sits space/s inside its own box. The pull removes exactly that

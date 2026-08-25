@@ -1853,9 +1853,22 @@ textarea.post-input { line-height: 1.2; resize: vertical; min-height: 6em; }
    What separates them is the SURFACE, not the presence of a state. A nested control takes
    `hover-surface-nested` so it sits ON the card's hover instead of competing with it. Give
    it the container's own `hover-surface` and the two paint the same colour, which is a
-   button that vanishes into the thing it sits on at the exact moment you reach for it. */
-.post-card__actions .post-btn:hover,
-.post-card__actions .post-btn.is-hover { background: var(--hover-surface-nested); }
+   button that vanishes into the thing it sits on at the exact moment you reach for it.
+
+   NOT FILLED. This rule exists so a control with NO background of its own does not paint
+   the same colour as the plane it sits on. A filled button already carries an opaque
+   background and an opaque hover (`action-hover`), neither of which can be confused with
+   the card's tint - it never needed the treatment.
+
+   Applying it anyway is a real bug and it shipped: this selector is (0,3,0) and
+   `.post-btn--filled:hover` is (0,2,0), so it won, replaced the solid fill with a pale
+   tint and left the label at `on-action` white. A filled primary action turned into
+   near-invisible white-on-pale at the exact moment you reached for it. The `:not()` is
+   load-bearing - do not simplify it away. */
+.post-card__actions .post-btn:not(.post-btn--filled):hover,
+.post-card__actions .post-btn:not(.post-btn--filled).is-hover {
+  background: var(--hover-surface-nested);
+}
 
 /* TYPE COMES FROM THE FIGMA TEXT STYLES, applied as the generated classes in the markup -
    `post-text-small` on the eyebrow and meta, `post-text-h4` on the title. Nothing here

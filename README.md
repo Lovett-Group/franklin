@@ -21,6 +21,7 @@ voice.html            voice and tone, the lexicon, the three audiences
 logotype.html         the wordmark, clearspace, placement, repetition
 identity.html         Sticks and the Graphic Swap
 shapes.html           the 79-shape library, downloadable
+swap.html             the Graphic Swap builder - compose a lockup and export it
 color.html            brand colour, destination identities, the two semantic axes
 typography.html       the typeface, the digital scale, print preferences
 ramps.html            the primitive colour ramps and their anchor steps

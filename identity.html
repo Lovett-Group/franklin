@@ -160,6 +160,13 @@ table.t td.val{font-family:var(--mono);font-size:13px;font-variant-numeric:tabul
 .seg button.on{background:var(--ink);color:#fff;font-weight:600}
 .seg button i{width:11px;height:11px;display:block;flex:none;border:1px solid rgba(128,128,128,.4)}
 
+/* the chip "in use" demo */
+.chipdemo{border:1px solid var(--rule);background:var(--paper);padding:20px 22px;
+  display:flex;flex-direction:column;gap:18px;margin:18px 0 20px}
+.cdrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-height:34px}
+.cdrow .lbl{min-width:66px;flex:none}
+.cdempty{font-size:14.5px;color:var(--ink-3)}
+
 /* live axis switcher — one row per axis, above the preview it drives */
 .axisctl{display:flex;flex-direction:column;gap:9px;padding:13px 16px;
   border-bottom:1px solid var(--rule);background:var(--paper)}
@@ -373,7 +380,6 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="component-note-link.html">Note Link</a>
 <a class="navlink" href="component-tag.html">Tag</a>
 <a class="navlink" href="component-chip.html">Chip</a>
-<a class="navlink" href="component-filter-tag.html">Filter Tag Group</a>
 <a class="navlink" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
@@ -394,6 +400,9 @@ footer.foot b{color:var(--ink-2);font-weight:600}
     </footer>
   </main>
 </div>
+<!-- Component behaviour. Delegated from the document, so it also drives the
+     previews this page renders after load. Same file the site tells you to use. -->
+<script src="assets/components.js"></script>
 
 </body>
 </html>

@@ -160,6 +160,13 @@ table.t td.val{font-family:var(--mono);font-size:13px;font-variant-numeric:tabul
 .seg button.on{background:var(--ink);color:#fff;font-weight:600}
 .seg button i{width:11px;height:11px;display:block;flex:none;border:1px solid rgba(128,128,128,.4)}
 
+/* the chip "in use" demo */
+.chipdemo{border:1px solid var(--rule);background:var(--paper);padding:20px 22px;
+  display:flex;flex-direction:column;gap:18px;margin:18px 0 20px}
+.cdrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-height:34px}
+.cdrow .lbl{min-width:66px;flex:none}
+.cdempty{font-size:14.5px;color:var(--ink-3)}
+
 /* live axis switcher — one row per axis, above the preview it drives */
 .axisctl{display:flex;flex-direction:column;gap:9px;padding:13px 16px;
   border-bottom:1px solid var(--rule);background:var(--paper)}
@@ -427,7 +434,6 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="component-note-link.html">Note Link</a>
 <a class="navlink on" href="component-tag.html">Tag</a>
 <a class="navlink" href="component-chip.html">Chip</a>
-<a class="navlink" href="component-filter-tag.html">Filter Tag Group</a>
 <a class="navlink" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
@@ -525,6 +531,9 @@ footer.foot b{color:var(--ink-2);font-weight:600}
     </footer>
   </main>
 </div>
+<!-- Component behaviour. Delegated from the document, so it also drives the
+     previews this page renders after load. Same file the site tells you to use. -->
+<script src="assets/components.js"></script>
 
 <script>
 /* Brand and theme are two independent axes, set as data attributes and resolved by the
@@ -751,17 +760,19 @@ const RECIPES={
 
  'chip':{
   html(s){
-    // Select is a real VARIANT axis on the Figma component — no `extras` entry, or the
-    // guide renders two switchers for the same property.
+    // Dismissible is a real VARIANT axis on the Figma component — no `extras` entry, or
+    // the guide renders two switchers for the same property. Renamed from Select
+    // (single|multi) on 2026-08-25: it names the visible effect rather than a select-mode
+    // nothing enforced — components.js toggles each chip independently either way.
     const sel=s.State==='selected'||s.State==='selected-hover';
-    const multi=s.Select==='multi';
-    // single is the DEFAULT and carries no modifier: one choice at a time, nothing to
-    // individually clear, so it never shows a dismiss. multi is what brings the x.
-    const cls='post-chip'+(multi?' post-chip--multi':'')+(sel?' is-selected':'')
+    const dismissible=s.Dismissible==='yes';
+    // `no` is the DEFAULT and carries no modifier: nothing to individually clear, so it
+    // never shows a dismiss. `yes` is what brings the x, and only once selected.
+    const cls='post-chip'+(dismissible?' post-chip--dismissible':'')+(sel?' is-selected':'')
       +((s.State==='hover'||s.State==='selected-hover')?' is-hover':'');
     const L=['<button class="'+cls+'" data-post-toggle="chip" aria-pressed="'+(sel?'true':'false')+'">'];
     L.push('  <span class="post-label">Label</span>');
-    if(multi) L.push('  <span data-post-dismiss>'+ICO('close')+'</span>');
+    if(dismissible) L.push('  <span data-post-dismiss>'+ICO('close')+'</span>');
     L.push('</button>');
     return L.join('\n');
   }},
@@ -772,7 +783,7 @@ const RECIPES={
     // multi-chip are the same object; what differs is where it renders and what
     // removing it means, which the GROUP carries, not the chip.
     return '<div class="post-chipgroup" data-post-chips="applied">\n'
-      +'  <button class="post-chip post-chip--multi is-selected'+(s.State==='hover'?' is-hover':'')
+      +'  <button class="post-chip post-chip--dismissible is-selected'+(s.State==='hover'?' is-hover':'')
       +'" data-post-toggle="chip" aria-pressed="true">\n'
       +'    <span class="post-label">Label</span>\n    <span data-post-dismiss>'+ICO('close')+'</span>\n'
       +'  </button>\n</div>';

@@ -1101,11 +1101,13 @@
   align-items: center;
   height: var(--icon-size-s);
 }
-/* SELECT decides whether selection produces a removable affordance.
-     single  one choice at a time, tab-like. Nothing to individually clear, so it
-             NEVER shows a dismiss. This is the DEFAULT — no modifier needed.
-     multi   many at once, each separately clearable, so selection brings the x. */
-.post-chip--multi.is-selected [data-post-dismiss] { display: flex; }
+/* DISMISSIBLE decides whether selection produces a removable affordance. Renamed from
+   Select (single|multi) on 2026-08-25 — it named an exclusivity this component never
+   enforced, while what actually differs is whether an x appears.
+     no   nothing to individually clear, so it NEVER shows a dismiss. This is the
+          DEFAULT — no modifier needed.
+     yes  each one separately clearable, so selection brings the x. */
+.post-chip--dismissible.is-selected [data-post-dismiss] { display: flex; }
 .post-chip:hover,
 .post-chip.is-hover { background: var(--hover-surface); color: var(--hover-ink); }
 .post-chip.is-selected { background: var(--action); color: var(--on-action); border-color: var(--action); }

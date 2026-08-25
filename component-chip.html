@@ -160,6 +160,13 @@ table.t td.val{font-family:var(--mono);font-size:13px;font-variant-numeric:tabul
 .seg button.on{background:var(--ink);color:#fff;font-weight:600}
 .seg button i{width:11px;height:11px;display:block;flex:none;border:1px solid rgba(128,128,128,.4)}
 
+/* the chip "in use" demo */
+.chipdemo{border:1px solid var(--rule);background:var(--paper);padding:20px 22px;
+  display:flex;flex-direction:column;gap:18px;margin:18px 0 20px}
+.cdrow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;min-height:34px}
+.cdrow .lbl{min-width:66px;flex:none}
+.cdempty{font-size:14.5px;color:var(--ink-3)}
+
 /* live axis switcher — one row per axis, above the preview it drives */
 .axisctl{display:flex;flex-direction:column;gap:9px;padding:13px 16px;
   border-bottom:1px solid var(--rule);background:var(--paper)}
@@ -427,7 +434,6 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="component-note-link.html">Note Link</a>
 <a class="navlink" href="component-tag.html">Tag</a>
 <a class="navlink on" href="component-chip.html">Chip</a>
-<a class="navlink" href="component-filter-tag.html">Filter Tag Group</a>
 <a class="navlink" href="component-input.html">Input</a>
 <a class="navlink" href="component-field.html">Field</a>
 <a class="navlink" href="component-select.html">Select</a>
@@ -441,7 +447,7 @@ footer.foot b{color:var(--ink-2);font-weight:600}
 <a class="navlink" href="component-stacked-card.html">Stacked Card</a>
 <a class="navlink" href="component-horizontal-card.html">Horizontal Card</a>
 <a class="navlink" href="component-media-thumb.html">Media Thumb</a></aside>
-  <main><div class="crumb">Components</div><h1 class="page">Chip</h1><p class="lede">An interactive filter that turns on and off.</p><p class="body">Use a row of chips where someone narrows a list by choosing from a fixed set of options.</p><div class="panel"><b>Watch out.</b> Clearing a chip returns it to unselected — it never disappears. The chip is the control, and a control that deletes itself cannot be turned back on.</div><div class="switch"><span class="lbl">Sub-brand</span><div class="seg" data-axis="brand"><button class="on" data-v="post"><i style="background:#0016C1"></i>post</button><button class="" data-v="culture"><i style="background:#34885D"></i>culture</button><button class="" data-v="eat"><i style="background:#F54544"></i>eat</button><button class="" data-v="music"><i style="background:#676767"></i>music</button><button class="" data-v="shop"><i style="background:#EA3ADD"></i>shop</button><button class="" data-v="skylawn"><i style="background:#2DB2EB"></i>skylawn</button><button class="" data-v="work"><i style="background:#994B03"></i>work</button></div><span class="lbl">Theme</span><div class="seg" data-axis="theme"><button class="on" data-v="light">light</button><button class="" data-v="warm">warm</button><button class="" data-v="brand">brand</button><button class="" data-v="deep">deep</button></div></div><div class="stage" id="live-chip">  <div class="sh"><span>Live</span><span>rendered from the shipped recipe</span></div>  <div class="axisctl" data-axisctl data-ctl-recipe="chip" data-axes="{&quot;Select&quot;: [&quot;single&quot;, &quot;multi&quot;]}" data-base="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;default&quot;}" data-target="#live-chip .stagebody"></div>  <div class="stagebody"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;default&quot;}"></div></div></div><h2 class="sec">Select</h2><div class="matrix"><div class="mcell"><div class="st">single <span class="deflt">default</span></div><div class="mb"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;default&quot;}"></div></div></div><div class="mcell"><div class="st">multi</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;multi&quot;, &quot;State&quot;: &quot;default&quot;}"></div></div></div></div><h2 class="sec">States</h2><div class="matrix"><div class="mcell"><div class="st">default</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;default&quot;}"></div></div></div><div class="mcell"><div class="st">hover</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;hover&quot;}"></div></div></div><div class="mcell"><div class="st">selected</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;selected&quot;}"></div></div></div><div class="mcell"><div class="st">selected-hover</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Select&quot;: &quot;single&quot;, &quot;State&quot;: &quot;selected-hover&quot;}"></div></div></div></div><h2 class="sec">Code</h2><p class="note">The HTML for the live example above is on the page - use your browser's inspector, or copy the CSS here and the markup from the preview. Load <code>post-ui.css</code> once per site and this component works anywhere.</p><div class="code" data-code="code-chip"><div class="bar"><button class="on" data-t="code-chip-0">CSS</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="code-chip-0">/* ============================================================================
+  <main><div class="crumb">Components</div><h1 class="page">Chip</h1><p class="lede">An interactive filter that turns on and off.</p><p class="body">Use a row of chips where someone narrows a list by choosing from a fixed set of options. Set Dismissible to yes where each choice should carry its own clear affordance once selected.</p><div class="panel"><b>Watch out.</b> Clearing a chip returns it to unselected — it never disappears. The chip is the control, and a control that deletes itself cannot be turned back on. The row that DOES disappear is the applied readout, shown below.</div><div class="switch"><span class="lbl">Sub-brand</span><div class="seg" data-axis="brand"><button class="on" data-v="post"><i style="background:#0016C1"></i>post</button><button class="" data-v="culture"><i style="background:#34885D"></i>culture</button><button class="" data-v="eat"><i style="background:#F54544"></i>eat</button><button class="" data-v="music"><i style="background:#676767"></i>music</button><button class="" data-v="shop"><i style="background:#EA3ADD"></i>shop</button><button class="" data-v="skylawn"><i style="background:#2DB2EB"></i>skylawn</button><button class="" data-v="work"><i style="background:#994B03"></i>work</button></div><span class="lbl">Theme</span><div class="seg" data-axis="theme"><button class="on" data-v="light">light</button><button class="" data-v="warm">warm</button><button class="" data-v="brand">brand</button><button class="" data-v="deep">deep</button></div></div><div class="stage" id="live-chip">  <div class="sh"><span>Live</span><span>rendered from the shipped recipe</span></div>  <div class="axisctl" data-axisctl data-ctl-recipe="chip" data-axes="{&quot;Dismissible&quot;: [&quot;no&quot;, &quot;yes&quot;]}" data-base="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;default&quot;}" data-target="#live-chip .stagebody"></div>  <div class="stagebody"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;default&quot;}"></div></div></div><h2 class="sec">Dismissible</h2><p class="note">Shown state: selected, because that is where this axis shows its effect.</p><div class="matrix"><div class="mcell"><div class="st">no <span class="deflt">default</span></div><div class="mb"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;selected&quot;}"></div></div></div><div class="mcell"><div class="st">yes</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;yes&quot;, &quot;State&quot;: &quot;selected&quot;}"></div></div></div></div><h2 class="sec">States</h2><div class="matrix"><div class="mcell"><div class="st">default</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;default&quot;}"></div></div></div><div class="mcell"><div class="st">hover</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;hover&quot;}"></div></div></div><div class="mcell"><div class="st">selected</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;selected&quot;}"></div></div></div><div class="mcell"><div class="st">selected-hover</div><div class="mb"><div data-recipe="chip" data-state="{&quot;Dismissible&quot;: &quot;no&quot;, &quot;State&quot;: &quot;selected-hover&quot;}"></div></div></div></div><h2 class="sec" id="in-use">In use</h2><p class="note">Pick a filter and it appears in the applied row. Clear it from either side &mdash; the two stay in step because the chip announces every change and the page reacts, which is the whole reason the event exists.</p><div class="chipdemo">  <div class="cdrow"><span class="lbl">Filters</span>    <div class="post-chipgroup" data-post-chips="filter" id="cd-filters"><button class="post-chip post-chip--dismissible" data-post-toggle="chip" data-post-value="dining" aria-pressed="false"><span class="post-label">Dining</span><span data-post-dismiss><svg class="post-icon" aria-hidden="true"><use href="#post-icon-close"/></svg></span></button><button class="post-chip post-chip--dismissible" data-post-toggle="chip" data-post-value="coworking" aria-pressed="false"><span class="post-label">Coworking</span><span data-post-dismiss><svg class="post-icon" aria-hidden="true"><use href="#post-icon-close"/></svg></span></button><button class="post-chip post-chip--dismissible" data-post-toggle="chip" data-post-value="events" aria-pressed="false"><span class="post-label">Events</span><span data-post-dismiss><svg class="post-icon" aria-hidden="true"><use href="#post-icon-close"/></svg></span></button><button class="post-chip post-chip--dismissible" data-post-toggle="chip" data-post-value="music" aria-pressed="false"><span class="post-label">Live music</span><span data-post-dismiss><svg class="post-icon" aria-hidden="true"><use href="#post-icon-close"/></svg></span></button></div>  </div>  <div class="cdrow"><span class="lbl">Applied</span>    <div class="post-chipgroup" data-post-chips="applied" id="cd-applied"></div>    <span class="cdempty" id="cd-empty">nothing applied yet</span>  </div></div><p class="note"><b>One component, two rows.</b> The markup of a chip is identical in both; only the group around it differs. In the <code>filter</code> row the x deselects and the chip stays put &mdash; it is the control, and a control that deletes itself cannot be turned back on. In the <code>applied</code> row the chip is a readout, so clearing it takes the row entry away and switches the source chip off.</p><h2 class="sec">Code</h2><p class="note">The HTML for the live example above is on the page - use your browser's inspector, or copy the CSS here and the markup from the preview. Load <code>post-ui.css</code> once per site and this component works anywhere.</p><div class="code" data-code="code-chip"><div class="bar"><button class="on" data-t="code-chip-0">CSS</button><span class="sp"></span><button class="cp">Copy</button></div><pre id="code-chip-0">/* ============================================================================
    POST UI System — components
    HAND-WRITTEN. Not generated: this file encodes the RULES the components follow,
    which is not the same thing as whatever the Figma canvas currently looks like.
@@ -520,11 +526,13 @@ footer.foot b{color:var(--ink-2);font-weight:600}
   align-items: center;
   height: var(--icon-size-s);
 }
-/* SELECT decides whether selection produces a removable affordance.
-     single  one choice at a time, tab-like. Nothing to individually clear, so it
-             NEVER shows a dismiss. This is the DEFAULT — no modifier needed.
-     multi   many at once, each separately clearable, so selection brings the x. */
-.post-chip--multi.is-selected [data-post-dismiss] { display: flex; }
+/* DISMISSIBLE decides whether selection produces a removable affordance. Renamed from
+   Select (single|multi) on 2026-08-25 — it named an exclusivity this component never
+   enforced, while what actually differs is whether an x appears.
+     no   nothing to individually clear, so it NEVER shows a dismiss. This is the
+          DEFAULT — no modifier needed.
+     yes  each one separately clearable, so selection brings the x. */
+.post-chip--dismissible.is-selected [data-post-dismiss] { display: flex; }
 .post-chip:hover,
 .post-chip.is-hover { background: var(--hover-surface); color: var(--hover-ink); }
 .post-chip.is-selected { background: var(--action); color: var(--on-action); border-color: var(--action); }
@@ -538,6 +546,9 @@ footer.foot b{color:var(--ink-2);font-weight:600}
     </footer>
   </main>
 </div>
+<!-- Component behaviour. Delegated from the document, so it also drives the
+     previews this page renders after load. Same file the site tells you to use. -->
+<script src="assets/components.js"></script>
 
 <script>
 /* Brand and theme are two independent axes, set as data attributes and resolved by the
@@ -581,6 +592,73 @@ document.querySelectorAll('[data-code]').forEach(function(box){
     });
   });
 });
+</script>
+
+<script>
+(function(){
+  var filters = document.getElementById('cd-filters');
+  var applied = document.getElementById('cd-applied');
+  var empty   = document.getElementById('cd-empty');
+  if(!filters || !applied) return;
+
+  function sync(){ empty.style.display = applied.children.length ? 'none' : ''; }
+
+  function sourceFor(value){
+    return filters.querySelector('[data-post-value="' + value + '"]');
+  }
+  function appliedFor(value){
+    return applied.querySelector('[data-post-value="' + value + '"]');
+  }
+
+  function add(value, label){
+    if(appliedFor(value)) return;
+    var b = document.createElement('button');
+    b.className = 'post-chip post-chip--dismissible is-selected';
+    b.setAttribute('data-post-toggle','chip');
+    b.setAttribute('data-post-value', value);
+    b.setAttribute('aria-pressed','true');
+    b.innerHTML = '<span class="post-label">' + label + '</span>'
+                + '<span data-post-dismiss><svg class="post-icon" aria-hidden="true">'
+                + '<use href="#post-icon-close"/></svg></span>';
+    applied.appendChild(b);
+    sync();
+  }
+  function drop(value){
+    var a = appliedFor(value);
+    if(a) a.remove();
+    sync();
+  }
+
+  /* One listener for both rows. `role` rides along in the event so the handler does not
+     have to walk the DOM upwards to work out which row it came from. */
+  document.addEventListener('post:chipchange', function(e){
+    var d = e.detail || {};
+    if(!d.value) return;
+
+    if(d.role === 'filter'){
+      if(d.selected){
+        var src = sourceFor(d.value);
+        add(d.value, src ? src.querySelector('.post-label').textContent : d.value);
+      } else {
+        drop(d.value);
+      }
+      return;
+    }
+
+    if(d.role === 'applied' && !d.selected){
+      // The readout is not the control. Turning it off means turning the SOURCE off;
+      // the row entry then disappears through the filter branch above.
+      var src = sourceFor(d.value);
+      if(src && src.classList.contains('is-selected')){
+        src.classList.remove('is-selected');
+        src.setAttribute('aria-pressed','false');
+      }
+      drop(d.value);
+    }
+  });
+
+  sync();
+})();
 </script>
 
 <script>const ICO=(n)=>'<svg class="post-icon" aria-hidden="true"><use href="#post-icon-'+n+'"/></svg>';
@@ -764,17 +842,19 @@ const RECIPES={
 
  'chip':{
   html(s){
-    // Select is a real VARIANT axis on the Figma component — no `extras` entry, or the
-    // guide renders two switchers for the same property.
+    // Dismissible is a real VARIANT axis on the Figma component — no `extras` entry, or
+    // the guide renders two switchers for the same property. Renamed from Select
+    // (single|multi) on 2026-08-25: it names the visible effect rather than a select-mode
+    // nothing enforced — components.js toggles each chip independently either way.
     const sel=s.State==='selected'||s.State==='selected-hover';
-    const multi=s.Select==='multi';
-    // single is the DEFAULT and carries no modifier: one choice at a time, nothing to
-    // individually clear, so it never shows a dismiss. multi is what brings the x.
-    const cls='post-chip'+(multi?' post-chip--multi':'')+(sel?' is-selected':'')
+    const dismissible=s.Dismissible==='yes';
+    // `no` is the DEFAULT and carries no modifier: nothing to individually clear, so it
+    // never shows a dismiss. `yes` is what brings the x, and only once selected.
+    const cls='post-chip'+(dismissible?' post-chip--dismissible':'')+(sel?' is-selected':'')
       +((s.State==='hover'||s.State==='selected-hover')?' is-hover':'');
     const L=['<button class="'+cls+'" data-post-toggle="chip" aria-pressed="'+(sel?'true':'false')+'">'];
     L.push('  <span class="post-label">Label</span>');
-    if(multi) L.push('  <span data-post-dismiss>'+ICO('close')+'</span>');
+    if(dismissible) L.push('  <span data-post-dismiss>'+ICO('close')+'</span>');
     L.push('</button>');
     return L.join('\n');
   }},
@@ -785,7 +865,7 @@ const RECIPES={
     // multi-chip are the same object; what differs is where it renders and what
     // removing it means, which the GROUP carries, not the chip.
     return '<div class="post-chipgroup" data-post-chips="applied">\n'
-      +'  <button class="post-chip post-chip--multi is-selected'+(s.State==='hover'?' is-hover':'')
+      +'  <button class="post-chip post-chip--dismissible is-selected'+(s.State==='hover'?' is-hover':'')
       +'" data-post-toggle="chip" aria-pressed="true">\n'
       +'    <span class="post-label">Label</span>\n    <span data-post-dismiss>'+ICO('close')+'</span>\n'
       +'  </button>\n</div>';

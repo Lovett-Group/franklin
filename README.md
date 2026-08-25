@@ -19,15 +19,19 @@ index.html            overview
 about.html            what POST is, the name, the history
 voice.html            voice and tone, the lexicon, the three audiences
 logotype.html         the wordmark, clearspace, placement, repetition
-identity.html         Sticks, the Graphic Swap, the shape library
+identity.html         Sticks and the Graphic Swap
+shapes.html           the 79-shape library, downloadable
 color.html            brand colour, destination identities, the two semantic axes
 typography.html       the typeface, the digital scale, print preferences
+ramps.html            the primitive colour ramps and their anchor steps
 tokens.html           the values that ship, read out of the stylesheet
-icons.html            the icon set
+icons.html            the icon set, downloadable
 components.html       component index
 component-*.html      one page per component (19)
 resources.html        how to install and use the CSS
 assets/               post-ui.css, components.js, icons.svg, fonts, images
+assets/download/      every logo, shape and icon as a standalone .svg,
+                      plus a zip per set
 ```
 
 ## Where it comes from
